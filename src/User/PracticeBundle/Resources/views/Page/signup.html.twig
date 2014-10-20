@@ -1,0 +1,34 @@
+
+{% extends 'UserPracticeBundle:Page:base.html.twig' %}
+
+{% block title %}Signup{% endblock %}
+{% block body %}
+
+	<div class = "signup-wrapper">
+	    	
+	    	<div class ="flashMessage">
+	    			{% for flashMessage in app.session.flashbag.get('error') %}
+			            <div class="glyphicon glyphicon-remove" id = "error-msg">
+			            {{ flashMessage }}
+			            </div> 
+			        {% endfor %}
+
+					 {% for flashMessage in app.session.flashbag.get('success') %}
+			            <div id = "success-msg" class = "glyphicon glyphicon-ok">
+			            {{ flashMessage }}
+			            </div> 
+			        {% endfor %}
+	    	</div>
+
+	    		{{ 
+	    			form(form, 
+
+	    					{attr:
+	    						{novalidate: 'novalidate'}
+	    					}
+	    			   	) 
+	    		}}
+
+	</div>
+    
+{% endblock %}

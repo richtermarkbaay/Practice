@@ -1,0 +1,11 @@
+header#header {
+background: #0496ea;
+}
+
+section#wrapper header#header nav ul li {
+list-style: none;
+}
+
+section#wrapper header#header nav ul li a {
+color: #fff;
+}

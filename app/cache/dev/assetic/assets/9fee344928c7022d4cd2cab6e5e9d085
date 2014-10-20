@@ -1,0 +1,21 @@
+header#header {
+background: #0496ea;
+padding: 20px;
+}
+
+header#header .header-content {
+width: 960px;
+margin: 0 auto;
+}
+ul.navigation li {
+ list-style: none;
+ display: inline-block;
+  }
+ul.navigation li a {
+color: #fff;
+}
+
+header#header .header-content > div {
+display: inline-block;
+width: 49%;
+}

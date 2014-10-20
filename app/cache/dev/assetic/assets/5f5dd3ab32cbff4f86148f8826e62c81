@@ -1,0 +1,35 @@
+header#header {
+background: #1c7bb2;
+padding: 20px;
+}
+
+header#header .header-content {
+width: 960px;
+margin: 0 auto;
+}
+
+ul.navigation li {
+ list-style: none;
+ display: inline-block;
+ width: 15%;
+  }
+
+ul.navigation li a {
+color: #fff;
+}
+
+header#header .header-content > div {
+display: inline-block;
+width: 49%;
+}
+header#header .header-content > div:last-child{
+	text-align: right;
+}
+
+/* login */  
+.login-wrapper {
+width: 500px;
+margin: 0 auto;
+margin-top: 100px;
+padding: 20px;
+}

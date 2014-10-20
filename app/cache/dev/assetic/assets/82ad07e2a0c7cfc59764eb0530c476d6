@@ -1,0 +1,19 @@
+header#header {
+background: #0496ea;
+padding: 20px;
+}
+
+section#wrapper header#header nav ul li {
+list-style: none;
+float: left;
+width: 3%;
+}
+
+section#wrapper header#header nav ul li a {
+color: #fff;
+}
+
+section#wrapper header#header nav {
+	position: relative;
+	bottom: 15px;
+}

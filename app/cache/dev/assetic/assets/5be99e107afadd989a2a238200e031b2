@@ -1,0 +1,13 @@
+header#header {
+background: #0496ea;
+padding: 20px;
+}
+
+header#header .header-content {
+width: 960px;
+margin: 0 auto;
+}
+ul.navigation li { list-style: none; }
+ul.navigation li a {
+color: #fff;
+}

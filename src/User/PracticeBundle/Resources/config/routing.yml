@@ -1,0 +1,19 @@
+user_practice_signup:
+    path:    /signup
+    defaults: { _controller: UserPracticeBundle:Main:signup }
+
+user_practice_homepage:
+    path:	/home
+    defaults: { _controller: UserPracticeBundle:Main:home }
+
+user_practice_login:
+    path:	/login
+    defaults: { _controller: UserPracticeBundle:Main:login }
+
+user_practice_index:
+    path:	/
+    defaults: { _controller: UserPracticeBundle:Main:home }
+
+user_practice_confirmnow:
+    path:	/confirmnow
+    defaults: { _controller: UserPracticeBundle:Main:confirmnow }

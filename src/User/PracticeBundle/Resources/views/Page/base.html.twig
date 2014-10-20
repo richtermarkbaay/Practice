@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} | Practice1</title>
+
+        {% block stylesheets %}
+            {% stylesheets '@UserPracticeBundle/Resources/public/css/*' filter='cssrewrite' %}
+                 <link rel="stylesheet" href="{{ asset_url }}" />
+                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            {% endstylesheets %}
+        {% endblock %}
+
+    </head>
+    <body>
+
+        <section id="wrapper">
+
+            <header id="header">
+
+                <div class = "header-content">
+                        <div>
+                            <logo>
+                                    logo here 
+                            </logo>
+                        </div>
+
+                        {% block navigation %}
+                            <div>
+                                <ul class="navigation">
+                                    <li><a href="{{ path('user_practice_homepage') }}">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{{ path('user_practice_login') }}">Login</a></li>
+                                </ul>
+                            </div>
+                        {% endblock %}
+                </div>
+                
+            </header>
+
+            <section class="main">
+                {% block body %}{% endblock %}
+            </section>
+
+        </section>
+
+    </body>
+</html>

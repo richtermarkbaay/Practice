@@ -1,0 +1,10 @@
+header#header {
+background: #0496ea;
+padding: 20px;
+}
+
+
+header#header .header-content {
+width: 960px;
+margin: 0 auto;
+}

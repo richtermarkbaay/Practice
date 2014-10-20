@@ -1,0 +1,4 @@
+user_practice:
+    resource: "@UserPracticeBundle/Resources/config/routing.yml"
+    prefix:   /
+

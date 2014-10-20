@@ -1,0 +1,24 @@
+header#header {
+background: #0496ea;
+padding: 20px;
+}
+
+section#wrapper header#header ul li {
+list-style: none;
+float: left;
+width: 3%;
+}
+
+section#wrapper header#header ul li a {
+color: #fff;
+}
+
+section#wrapper header#header nav {
+	position: relative;
+	bottom: 15px;
+}
+
+header#header > div {
+float: left;
+width: 50%;
+}
