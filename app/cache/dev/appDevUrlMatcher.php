@@ -177,6 +177,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'User\\PracticeBundle\\Controller\\MainController::confirmnowAction',  '_route' => 'user_practice_confirmnow',);
         }
 
+        if (0 === strpos($pathinfo, '/log')) {
+            // user_practice_login_check
+            if ($pathinfo === '/login_check') {
+                return array('_route' => 'user_practice_login_check');
+            }
+
+            // logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'logout');
+            }
+
+        }
+
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

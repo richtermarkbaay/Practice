@@ -3,6 +3,7 @@
 namespace User\PracticeBundle\Entity;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  */
-class User 
+class User implements UserInterface 
 {
     /**
      * @var integer
@@ -41,6 +42,22 @@ class User
      * @var boolean
      */
     private $status;
+
+    /**
+     * @var string
+     */
+    private $roles;
+
+    /**
+     * @var string
+     */
+    private $salt;
+    
+    /**
+     * @var string
+     */
+    private $username;
+
 
 
     /**
@@ -166,6 +183,44 @@ class User
     public function getStatus()
     {
         return $this->status;
+    }
+
+
+     /**
+     * Get roles
+     *
+     * @return string 
+     */
+    public function getRoles()
+    {
+     return array('ROLE_USER');
+    }
+
+     /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+
+     /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+
+    public function eraseCredentials()
+    {
+
     }
 
     // public static function loadValidatorMetadata(ClassMetadata $metadata)

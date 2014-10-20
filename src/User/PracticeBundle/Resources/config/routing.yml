@@ -17,3 +17,9 @@ user_practice_index:
 user_practice_confirmnow:
     path:	/confirmnow
     defaults: { _controller: UserPracticeBundle:Main:confirmnow }
+
+user_practice_login_check:
+    path:	/login_check
+
+logout:
+    path:	/logout

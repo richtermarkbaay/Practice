@@ -115,8 +115,8 @@ class __TwigTemplate_1b7ad8fe9f2ef5804714719559612dd41250c5ccb971acce9496a797867
                                     <li><a href=\"#\">Contact</a></li>
                                     <li><a href=\"";
         // line 33
-        echo $this->env->getExtension('routing')->getPath("user_practice_login");
-        echo "\">Login</a></li>
+        echo $this->env->getExtension('routing')->getPath("logout");
+        echo "\">logout</a></li>
                                 </ul>
                             </div>
                         ";

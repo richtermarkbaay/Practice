@@ -89,9 +89,9 @@ class __TwigTemplate_b8ae1702ceabf2394ae447e28a678c9ce104c95619a33ce0880fd16da71
         }
         // line 26
         echo "
-\t\t\t\t\t<form action=\"\" method=\"post\">
+\t\t\t\t\t<form action=\"login_check\" method=\"post\">
 
-\t\t\t\t\t    <input type=\"text\" id=\"username\" class = \"form-control\" name=\"_username\" placeholder = \"Email\" value=\"";
+\t\t\t\t\t    <input type=\"text\" id=\"email\" class = \"form-control\" name=\"_username\" placeholder = \"Email\" value=\"";
         // line 29
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" />

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class MainController extends Controller
 {
@@ -18,8 +19,7 @@ class MainController extends Controller
     public function loginAction(Request $request){
 
            $session = $request->getSession();
-
-            // get the login error if there is one
+                      // get the login error if there is one
             if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
                 $error = $request->attributes->get(
                     SecurityContextInterface::AUTHENTICATION_ERROR
@@ -30,7 +30,6 @@ class MainController extends Controller
             } else {
                 $error = '';
             }
-
             // last username entered by the user
             $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
@@ -121,11 +120,13 @@ class MainController extends Controller
             if($form->isSubmitted()) {
               //  var_dump($form->getData());
                 if($form->isValid())  {
-
+                        $factory = $this->get('security.encoder_factory');
+                        $encoder = $factory->getEncoder($user);
+                        $password = $encoder->encodePassword($form['password']->getData(), '');
                         $user->setEmail($form['email']->getData());
                         $user->setFirstname($form['firstname']->getData());
                         $user->setLastname($form['lastname']->getData());
-                        $user->setPassword($form['password']->getData());
+                        $user->setPassword($password);
                         $user->setStatus(false);
 
                         $checkData = $this->getDoctrine()
