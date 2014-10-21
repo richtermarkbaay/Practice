@@ -168,7 +168,25 @@ class MainController extends Controller
 
     public function confirmnowAction(){
 
-        echo "go"; exit;
+        $id = (int)$_GET['id']; 
+        $authCode = (string)$_GET['authCode'];
+
+        $em = $this->getDoctrine()->getManager();
+        $result = $em->getRepository('UserPracticeBundle:User')->find($id);
+
+        if (!$result) {
+            throw $this->createNotFoundException(
+                'No user found for id '.$id
+            );
+        }
+
+        $result->setStatus(true);
+        $em->flush();
+
+       $this->get('session')->getFlashBag()->add('sucess','success confirmation'); 
+       return $this->redirect('login');
+
+
 
     }
     public function sendConfirmationEmail($id, $name, $email)
