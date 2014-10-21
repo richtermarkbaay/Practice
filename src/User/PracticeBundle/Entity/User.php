@@ -185,6 +185,18 @@ class User implements UserInterface
         return $this->status;
     }
 
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 
      /**
      * Get roles
@@ -193,7 +205,20 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-     return array('ROLE_USER');
+     return $this->roles;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
     }
 
      /**
@@ -207,6 +232,18 @@ class User implements UserInterface
     }
 
 
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
      /**
      * Get username
      *

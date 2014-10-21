@@ -7,11 +7,13 @@ use User\PracticeBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class MainController extends Controller
 {
+
     public function homeAction()
     {
        return $this->render('UserPracticeBundle:Page:home.html.twig');       
@@ -128,6 +130,9 @@ class MainController extends Controller
                         $user->setLastname($form['lastname']->getData());
                         $user->setPassword($password);
                         $user->setStatus(false);
+                        $user->setSalt($password);
+                        $user->setRoles('ROLE_USER');
+
 
                         $checkData = $this->getDoctrine()
                             ->getRepository('UserPracticeBundle:User')
@@ -197,5 +202,81 @@ class MainController extends Controller
 
             }   
     }
+    public function sendReqPassEmail($email, $authCode)
+    {
+        $message = \Swift_Message::newInstance()
+
+            ->setSubject('Request Password')
+            ->setFrom('richtermark.baay@Chromedia.com')
+            ->setTo($email)
+            ->setContentType('text/html')
+            ->setBody(
+                $this->renderView(
+                    'UserPracticeBundle:Page:request_password.html.twig',
+                                                                 array(
+                                                                        'authCode' => sha1($email),
+                                                                        'email' => $email,
+                                                                    
+                                                                     )
+                )
+            )
+        ;
+
+          try {
+
+                $this->get('mailer')->send($message);  
+
+            } catch(\Doctrine\DBAL\DBALException $e) {
+
+                $this->get('session')->getFlashBag()->add('error', 'Request not sent.');
+
+            }   
+    }
+    public function forgot_pass_requestAction()
+    {
+        $user = new User();
+        $form_forgot_pass_req = $this->createFormBuilder($user)
+         ->add('email', 'email', array(
+                                        'label' => false,
+                                        'attr' => array(    
+                                                            'class' => 'form-control',
+                                                        ),
+                                        'constraints' => array(new Email(array('message' => 'Enter your email properly')))
+
+                                   ))
+          ->add('send_request', 'submit', array(
+                                                    'label' => 'Send >>',
+                                                    'attr' => array(
+                                                                        'class' => 'btn btn-primary',
+
+                                                                    ),
+                                                ))
+        ->getForm();
+
+        // validating the forms    
+
+        $request = $this->getRequest();
+        $form_forgot_pass_req->handleRequest($request);
+        if($form_forgot_pass_req->isSubmitted()) {
+
+               $email = $form_forgot_pass_req['email']->getData(); 
+               $authCode = sha1($email);
+
+               $this->sendReqPassEmail($email, $authCode);
+
+            /*if($form_forgot_pass_req->isValid()){
+
+               
+            }*/
+
+        }
+
+        return $this->render('UserPracticeBundle:Page:forgot_pass_request.html.twig', array(
+                                                                                    'form_pass_request' => $form_forgot_pass_req->createView(),
+                                                                              ));  
+
+    }
+
+
 
 }

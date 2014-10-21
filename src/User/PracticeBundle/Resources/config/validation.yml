@@ -1,7 +1,7 @@
 User\PracticeBundle\Entity\User:
     properties:
         email:	
-            - Email:
+            - Email: 
                  message: Email {{ value }} in invalid
             - NotNull: {message: 'Please enter your email'}
         password:

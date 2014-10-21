@@ -172,9 +172,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'User\\PracticeBundle\\Controller\\MainController::homeAction',  '_route' => 'user_practice_index',);
         }
 
+        // user_practice_resetnow
+        if ($pathinfo === '/resetnow') {
+            return array (  '_controller' => 'User\\PracticeBundle\\Controller\\MainController::resetnowAction',  '_route' => 'user_practice_resetnow',);
+        }
+
         // user_practice_confirmnow
         if ($pathinfo === '/confirmnow') {
             return array (  '_controller' => 'User\\PracticeBundle\\Controller\\MainController::confirmnowAction',  '_route' => 'user_practice_confirmnow',);
+        }
+
+        // user_practice_forgot_pass_request
+        if ($pathinfo === '/forgot_pass_request') {
+            return array (  '_controller' => 'User\\PracticeBundle\\Controller\\MainController::forgot_pass_requestAction',  '_route' => 'user_practice_forgot_pass_request',);
         }
 
         if (0 === strpos($pathinfo, '/log')) {

@@ -2,3 +2,9 @@
 /bin/
 /composer.phar
 /app/logs/*
+/app/cache/*
+/app/bootstrap.php.cache
+/build/
+/app/config/parameters.yml
+/web/bundles/
+

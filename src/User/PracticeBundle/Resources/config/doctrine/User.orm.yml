@@ -18,4 +18,8 @@ User\PracticeBundle\Entity\User:
             type: text
         status:
             type: boolean
+        salt:
+            type: text
+        roles:
+            type: text
     lifecycleCallbacks: {  }

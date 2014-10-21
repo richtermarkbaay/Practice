@@ -108,7 +108,7 @@ class __TwigTemplate_b8ae1702ceabf2394ae447e28a678c9ce104c95619a33ce0880fd16da71
 
 \t    \t\t<p class = \"fpass-signup\"><a href = \"";
         // line 44
-        echo $this->env->getExtension('routing')->getPath("user_practice_signup");
+        echo $this->env->getExtension('routing')->getPath("user_practice_forgot_pass_request");
         echo "\">Forgot password?</a> | <a href = \"";
         echo $this->env->getExtension('routing')->getPath("user_practice_signup");
         echo "\"\"> Signup </ad></p>

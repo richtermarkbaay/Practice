@@ -14,9 +14,16 @@ user_practice_index:
     path:	/
     defaults: { _controller: UserPracticeBundle:Main:home }
 
+user_practice_resetnow:
+    path:   /resetnow
+    defaults: { _controller: UserPracticeBundle:Main:resetnow }
 user_practice_confirmnow:
     path:	/confirmnow
     defaults: { _controller: UserPracticeBundle:Main:confirmnow }
+
+user_practice_forgot_pass_request:
+    path:    /forgot_pass_request
+    defaults: { _controller: UserPracticeBundle:Main:forgot_pass_request}
 
 user_practice_login_check:
     path:	/login_check
