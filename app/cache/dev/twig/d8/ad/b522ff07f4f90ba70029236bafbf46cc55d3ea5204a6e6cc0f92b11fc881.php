@@ -29,7 +29,7 @@ If this is your email ";
         echo ", Simply click the link below now confirm your email and sign in to continue using \"exam site\".
 Confirm now: ";
         // line 5
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("user_practice_confirmnow", array("id" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id")), "authCode" => (isset($context["authCode"]) ? $context["authCode"] : $this->getContext($context, "authCode")))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("user_practice_confirmnow", array("id" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id")), "sAlt" => (isset($context["sAlt"]) ? $context["sAlt"] : $this->getContext($context, "sAlt")))), "html", null, true);
         echo "
 
 Thank you,

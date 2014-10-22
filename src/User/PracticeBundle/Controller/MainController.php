@@ -124,13 +124,15 @@ class MainController extends Controller
                 if($form->isValid())  {
                         $factory = $this->get('security.encoder_factory');
                         $encoder = $factory->getEncoder($user);
+                        $salt = $encoder->encodePassword($form['email']->getData(), '');
                         $password = $encoder->encodePassword($form['password']->getData(), '');
+
                         $user->setEmail($form['email']->getData());
                         $user->setFirstname($form['firstname']->getData());
                         $user->setLastname($form['lastname']->getData());
                         $user->setPassword($password);
                         $user->setStatus(false);
-                        $user->setSalt($password);
+                        $user->setSalt($salt);
                         $user->setRoles('ROLE_USER');
 
 
@@ -166,31 +168,12 @@ class MainController extends Controller
                                                                               ));  
     }
 
-    public function confirmnowAction(){
-
-        $id = (int)$_GET['id']; 
-        $authCode = (string)$_GET['authCode'];
-
-        $em = $this->getDoctrine()->getManager();
-        $result = $em->getRepository('UserPracticeBundle:User')->find($id);
-
-        if (!$result) {
-            throw $this->createNotFoundException(
-                'No user found for id '.$id
-            );
-        }
-
-        $result->setStatus(true);
-        $em->flush();
-
-       $this->get('session')->getFlashBag()->add('sucess','success confirmation'); 
-       return $this->redirect('login');
-
-
-
-    }
     public function sendConfirmationEmail($id, $name, $email)
     {
+        $factory = $this->get('security.encoder_factory');
+        $encoder = $factory->getEncoder(new User());
+        $salt = $encoder->encodePassword($email, '');
+
         $message = \Swift_Message::newInstance()
 
             ->setSubject('Email Confirmation')
@@ -201,7 +184,7 @@ class MainController extends Controller
                 $this->renderView(
                     'UserPracticeBundle:Page:confirm.html.twig',
                                                                  array(
-                                                                        'authCode' => sha1($email),
+                                                                        'sAlt' => $salt,
                                                                         'email' => $email,
                                                                         'name' => $name,
                                                                         'id' => $id,
@@ -220,7 +203,61 @@ class MainController extends Controller
 
             }   
     }
-    public function sendReqPassEmail($email, $authCode)
+    public function confirmnowAction(){
+
+        $id = (int)$_GET['id']; 
+        $salt = (string)$_GET['sAlt'];
+
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery("SELECT u.id FROM UserPracticeBundle:User u WHERE u.salt = '$salt'");
+        $result = $query->getResult();
+
+
+      if(count($result)>0){
+
+                            $em = $this->getDoctrine()->getManager();
+                            $result = $em->getRepository('UserPracticeBundle:User')->find($id);     
+
+                        //    $datenow = date('Y-m-d');
+                         //   $dateDB = $user->getDate();
+
+                             
+                        //    $resultDateCkecked = static::checkDateTimeAction($dateDB, $datenow);
+
+                         //    if($resultDateCkecked){
+
+                        //         return new Response('<script> alert("This confirmation has been expired!"); </script> I advice you to delete this message! ^_^');
+
+                        //    }else 
+
+                            if($result->getStatus() == true){
+
+                                    return new Response('<script> alert("You cannot access this confirmation anymore! Account is already confirmed."); </script> I advice you to delete this message! ^_^');
+
+                            } else {
+
+                                    try{
+                                                $result->setStatus(true);
+                                                $em->flush();
+
+                                        }catch(\Doctrine\DBAL\DBALException $e) {
+
+                                                            $this->get('session')->getFlashBag()->add('error', 'Somethings happen with the confirmation of account, Please try again!');
+
+                                                        }
+                                         $this->get('session')->getFlashBag()->add('success', 'Your email has been confirmed! You can login now.');                 
+                                        return $this->redirect('login');
+
+                            } 
+
+                }else
+                {
+                    return new Response('Invalid confirmation code!');
+                }
+
+    }
+    public function sendReqPassEmail($email, $authCode, $email)
     {
         $message = \Swift_Message::newInstance()
 
