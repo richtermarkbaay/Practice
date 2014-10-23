@@ -1,3 +1,7 @@
+demo:
+    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 user_practice:
     resource: "@UserPracticeBundle/Resources/config/routing.yml"
     prefix:   /

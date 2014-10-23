@@ -39,9 +39,6 @@
     <parameter key="debug_toolbar">true</parameter>
     <parameter key="debug_redirects">false</parameter>
     <parameter key="use_assetic_controller">true</parameter>
-    <parameter key="router.request_context.host">example.org</parameter>
-    <parameter key="router.request_context.scheme">https</parameter>
-    <parameter key="router.request_context.base_url">my/path</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -212,6 +209,9 @@
     <parameter key="router.options.matcher.cache_class">appDevUrlMatcher</parameter>
     <parameter key="router.options.generator.cache_class">appDevUrlGenerator</parameter>
     <parameter key="router_listener.class">Symfony\Component\HttpKernel\EventListener\RouterListener</parameter>
+    <parameter key="router.request_context.host">localhost</parameter>
+    <parameter key="router.request_context.scheme">http</parameter>
+    <parameter key="router.request_context.base_url"></parameter>
     <parameter key="router.resource">/Applications/XAMPP/xamppfiles/htdocs/Sites/Practice1/app/cache/dev/assetic/routing.yml</parameter>
     <parameter key="router.cache_class_prefix">appDev</parameter>
     <parameter key="request_listener.http_port">80</parameter>
@@ -1682,10 +1682,10 @@
       </argument>
     </service>
     <service id="router.request_context" class="Symfony\Component\Routing\RequestContext" public="false">
-      <argument>my/path</argument>
+      <argument></argument>
       <argument>GET</argument>
-      <argument>example.org</argument>
-      <argument>https</argument>
+      <argument>localhost</argument>
+      <argument>http</argument>
       <argument>80</argument>
       <argument>443</argument>
     </service>
@@ -1717,7 +1717,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5445dbe0d7f9e</argument>
+            <argument>5448b449ef290</argument>
           </service>
         </argument>
       </argument>
@@ -1979,7 +1979,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5445dbe0d7f9e</argument>
+            <argument>5448b449ef290</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>

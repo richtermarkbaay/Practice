@@ -102,7 +102,7 @@ class __TwigTemplate_b8ae1702ceabf2394ae447e28a678c9ce104c95619a33ce0880fd16da71
 \t\t\t\t\t    ";
         // line 39
         echo "
-\t\t\t\t\t    <button type=\"submit\" class = \"btn btn-primary\">login</button>
+\t\t\t\t\t    <button name = \"login\" type=\"submit\" class = \"btn btn-primary\">login</button>
 \t\t\t\t\t</form>
 
 

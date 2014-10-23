@@ -64,10 +64,10 @@ class User extends \User\PracticeBundle\Entity\User implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'firstname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'lastname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'password', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'status');
+            return array('__isInitialized__', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'firstname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'lastname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'password', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'status', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'username');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'firstname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'lastname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'password', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'status');
+        return array('__isInitialized__', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'id', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'email', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'firstname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'lastname', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'password', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'status', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'User\\PracticeBundle\\Entity\\User' . "\0" . 'username');
     }
 
     /**
@@ -296,6 +296,83 @@ class User extends \User\PracticeBundle\Entity\User implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
 
         return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRoles($roles)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRoles', array($roles));
+
+        return parent::setRoles($roles);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRoles()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoles', array());
+
+        return parent::getRoles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSalt($salt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSalt', array($salt));
+
+        return parent::setSalt($salt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSalt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSalt', array());
+
+        return parent::getSalt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUsername($username)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUsername', array($username));
+
+        return parent::setUsername($username);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUsername()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsername', array());
+
+        return parent::getUsername();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function eraseCredentials()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'eraseCredentials', array());
+
+        return parent::eraseCredentials();
     }
 
 }

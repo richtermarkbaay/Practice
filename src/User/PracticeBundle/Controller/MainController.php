@@ -124,8 +124,8 @@ class MainController extends Controller
                 if($form->isValid())  {
                         $factory = $this->get('security.encoder_factory');
                         $encoder = $factory->getEncoder($user);
-                        $salt = $encoder->encodePassword($form['email']->getData(), '');
-                        $password = $encoder->encodePassword($form['password']->getData(), '');
+                        $salt = md5(uniqid());
+                        $password = $encoder->encodePassword($form['password']->getData(), $salt);
 
                         $user->setEmail($form['email']->getData());
                         $user->setFirstname($form['firstname']->getData());
@@ -310,11 +310,18 @@ class MainController extends Controller
 
         // validating the forms    
 
+
+
         $request = $this->getRequest();
         $form_forgot_pass_req->handleRequest($request);
         if($form_forgot_pass_req->isSubmitted()) {
 
-               $email = $form_forgot_pass_req['email']->getData(); 
+                    $factory = $this->get('security.encoder_factory');
+                    $encoder = $factory->getEncoder(new User());
+                    $salt = $encoder->encodePassword($email, '');
+
+
+            /*   $email = $form_forgot_pass_req['email']->getData(); 
                $authCode = sha1($email);
 
                $this->sendReqPassEmail($email, $authCode);
